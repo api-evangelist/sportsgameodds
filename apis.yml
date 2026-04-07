@@ -1,6 +1,7 @@
 aid: sportsgameodds
 name: SportsGameOdds
-description: 'SportsGameOdds API Documentation '
+description: >-
+  SportsGameOdds API Documentation.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -15,7 +16,8 @@ specificationVersion: '0.19'
 apis:
   - aid: sportsgameodds:sportsgameodds
     name: SportsGameOdds
-    description: 'SportsGameOdds API Documentation '
+    description: >-
+      SportsGameOdds API Documentation.
     humanURL: ' https://sportsgameodds.com/docs/'
     tags:
       - API
