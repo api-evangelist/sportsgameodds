@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sportsgameodds.com/schemas/market",
+  "title": "SportsGameOdds Market",
+  "description": "A betting market type defining how a wager can be placed on a sporting event",
+  "type": "object",
+  "required": ["marketId", "name", "betType"],
+  "properties": {
+    "marketId": {
+      "type": "string",
+      "description": "Unique market identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable market name",
+      "examples": ["Full Game Moneyline", "First Half Spread", "Player Passing Yards"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the betting market"
+    },
+    "betType": {
+      "type": "string",
+      "enum": ["moneyline", "spread", "total", "prop"],
+      "description": "Category of bet type"
+    },
+    "period": {
+      "type": "string",
+      "description": "Game period this market applies to",
+      "enum": ["full_game", "first_half", "second_half", "first_quarter", "second_quarter", "third_quarter", "fourth_quarter", "overtime"]
+    },
+    "sports": {
+      "type": "array",
+      "description": "Sports this market is available for",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["football"], ["basketball"], ["football", "basketball"]]
+    },
+    "leagues": {
+      "type": "array",
+      "description": "Specific leagues this market is available for",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

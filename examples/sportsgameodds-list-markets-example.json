@@ -1,0 +1,63 @@
+{
+  "name": "List Betting Markets for Football",
+  "description": "Example request and response for listing all available betting markets for football",
+  "request": {
+    "method": "GET",
+    "url": "https://api.sportsgameodds.com/v1/markets/",
+    "headers": {
+      "X-API-Key": "your_api_key_here"
+    },
+    "parameters": {
+      "sport": "football"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "marketId": "moneyline-full",
+          "name": "Full Game Moneyline",
+          "description": "Bet on which team wins the game outright with no point spread",
+          "betType": "moneyline",
+          "sports": ["football", "basketball", "baseball", "hockey", "soccer", "mma"]
+        },
+        {
+          "marketId": "spread-full",
+          "name": "Full Game Spread",
+          "description": "Bet on a team to cover the point spread for the entire game",
+          "betType": "spread",
+          "sports": ["football", "basketball", "baseball", "hockey"]
+        },
+        {
+          "marketId": "total-full",
+          "name": "Full Game Total (Over/Under)",
+          "description": "Bet on whether the combined score will be over or under the posted total",
+          "betType": "total",
+          "sports": ["football", "basketball", "baseball", "hockey", "soccer"]
+        },
+        {
+          "marketId": "moneyline-first-half",
+          "name": "First Half Moneyline",
+          "description": "Bet on which team leads at halftime",
+          "betType": "moneyline",
+          "sports": ["football", "basketball"]
+        },
+        {
+          "marketId": "spread-first-quarter",
+          "name": "First Quarter Spread",
+          "description": "Bet on the first quarter point spread",
+          "betType": "spread",
+          "sports": ["football", "basketball"]
+        },
+        {
+          "marketId": "player-passing-yards",
+          "name": "Player Passing Yards Prop",
+          "description": "Bet over or under on a quarterback's passing yards total",
+          "betType": "prop",
+          "sports": ["football"]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sportsgameodds.com/schemas/event",
+  "title": "SportsGameOdds Event",
+  "description": "A sporting event with odds data from multiple sportsbooks",
+  "type": "object",
+  "required": ["eventId", "sport", "league", "startTime", "status"],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "description": "Unique identifier for the event"
+    },
+    "sport": {
+      "type": "string",
+      "description": "Sport name",
+      "examples": ["football", "basketball", "baseball", "hockey", "soccer", "mma", "golf", "tennis"]
+    },
+    "league": {
+      "type": "string",
+      "description": "League abbreviation",
+      "examples": ["NFL", "NBA", "MLB", "NHL", "EPL", "UCL", "UFC", "PGA", "ATP"]
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event start time in UTC ISO 8601 format"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["scheduled", "live", "completed", "cancelled"],
+      "description": "Current event status"
+    },
+    "homeTeam": {
+      "$ref": "#/$defs/Team"
+    },
+    "awayTeam": {
+      "$ref": "#/$defs/Team"
+    },
+    "odds": {
+      "type": "array",
+      "description": "Odds lines from multiple sportsbooks",
+      "items": {
+        "$ref": "#/$defs/OddsLine"
+      }
+    }
+  },
+  "$defs": {
+    "Team": {
+      "type": "object",
+      "required": ["teamId", "name"],
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "Unique team identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full team name"
+        },
+        "abbreviation": {
+          "type": "string",
+          "description": "Team abbreviation (e.g., NE, LAL)",
+          "maxLength": 5
+        },
+        "league": {
+          "type": "string",
+          "description": "League the team belongs to"
+        }
+      }
+    },
+    "OddsLine": {
+      "type": "object",
+      "required": ["bookmaker", "market"],
+      "properties": {
+        "bookmaker": {
+          "type": "string",
+          "description": "Sportsbook name (e.g., DraftKings, FanDuel)"
+        },
+        "market": {
+          "type": "string",
+          "description": "Betting market type",
+          "enum": ["moneyline", "spread", "total", "prop"]
+        },
+        "period": {
+          "type": "string",
+          "description": "Game period for the bet",
+          "enum": ["full_game", "first_half", "second_half", "first_quarter", "second_quarter", "third_quarter", "fourth_quarter"]
+        },
+        "oddId": {
+          "type": "string",
+          "description": "Unique odds identifier in OddID composite format"
+        },
+        "homeOdds": {
+          "type": "number",
+          "description": "Home team or over odds in American format (e.g., -110, +150)"
+        },
+        "awayOdds": {
+          "type": "number",
+          "description": "Away team or under odds in American format"
+        },
+        "line": {
+          "type": "number",
+          "description": "Point spread or total points line value"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when odds were last updated"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "List NFL Events with Odds",
+  "description": "Example request and response for retrieving scheduled NFL events with live odds from multiple sportsbooks",
+  "request": {
+    "method": "GET",
+    "url": "https://api.sportsgameodds.com/v1/events/",
+    "headers": {
+      "X-API-Key": "your_api_key_here"
+    },
+    "parameters": {
+      "sport": "football",
+      "league": "NFL",
+      "status": "scheduled",
+      "limit": 5
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "eventId": "nfl-2025-wk14-ne-vs-buf",
+          "sport": "football",
+          "league": "NFL",
+          "startTime": "2025-12-07T18:00:00Z",
+          "status": "scheduled",
+          "homeTeam": {
+            "teamId": "nfl-buf",
+            "name": "Buffalo Bills",
+            "abbreviation": "BUF",
+            "league": "NFL"
+          },
+          "awayTeam": {
+            "teamId": "nfl-ne",
+            "name": "New England Patriots",
+            "abbreviation": "NE",
+            "league": "NFL"
+          },
+          "odds": [
+            {
+              "bookmaker": "DraftKings",
+              "market": "spread",
+              "period": "full_game",
+              "oddId": "nfl-2025-wk14-ne-vs-buf:spread:full_game:draftkings",
+              "homeOdds": -110,
+              "awayOdds": -110,
+              "line": -9.5,
+              "lastUpdated": "2025-12-07T12:30:00Z"
+            },
+            {
+              "bookmaker": "FanDuel",
+              "market": "spread",
+              "period": "full_game",
+              "oddId": "nfl-2025-wk14-ne-vs-buf:spread:full_game:fanduel",
+              "homeOdds": -110,
+              "awayOdds": -110,
+              "line": -9.0,
+              "lastUpdated": "2025-12-07T12:28:00Z"
+            },
+            {
+              "bookmaker": "BetMGM",
+              "market": "moneyline",
+              "period": "full_game",
+              "oddId": "nfl-2025-wk14-ne-vs-buf:moneyline:full_game:betmgm",
+              "homeOdds": -420,
+              "awayOdds": 335,
+              "lastUpdated": "2025-12-07T12:25:00Z"
+            }
+          ]
+        }
+      ],
+      "total": 1
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "@context": {
+    "@vocab": "https://sportsgameodds.com/ontology/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Event": "schema:SportsEvent",
+    "eventId": "@id",
+    "sport": "schema:sport",
+    "league": {
+      "@id": "schema:memberOf",
+      "@type": "schema:SportsOrganization"
+    },
+    "startTime": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "status": "schema:eventStatus",
+    "homeTeam": {
+      "@id": "schema:homeTeam",
+      "@type": "schema:SportsTeam"
+    },
+    "awayTeam": {
+      "@id": "schema:awayTeam",
+      "@type": "schema:SportsTeam"
+    },
+
+    "Team": "schema:SportsTeam",
+    "teamId": "@id",
+    "name": "schema:name",
+    "abbreviation": "schema:alternateName",
+
+    "OddsLine": "sportsgameodds:BettingOddsLine",
+    "bookmaker": "sportsgameodds:bookmaker",
+    "market": "sportsgameodds:bettingMarket",
+    "period": "sportsgameodds:gamePeriod",
+    "oddId": "sportsgameodds:oddIdentifier",
+    "homeOdds": "sportsgameodds:homeOdds",
+    "awayOdds": "sportsgameodds:awayOdds",
+    "line": "sportsgameodds:pointSpread",
+    "lastUpdated": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "Market": "sportsgameodds:BettingMarket",
+    "marketId": "@id",
+    "betType": "sportsgameodds:betType",
+    "description": "schema:description",
+
+    "Player": "schema:Person",
+    "playerId": "@id",
+    "position": "schema:jobTitle",
+    "team": "schema:memberOf",
+
+    "Sport": "sportsgameodds:Sport",
+    "sportId": "@id",
+    "leagues": "sportsgameodds:hasLeague",
+
+    "League": "sportsgameodds:League",
+    "leagueId": "@id",
+    "country": "schema:addressCountry",
+
+    "UsageStats": "sportsgameodds:ApiUsageStatistics",
+    "requestsToday": "sportsgameodds:dailyRequestCount",
+    "requestsMonth": "sportsgameodds:monthlyRequestCount",
+    "dailyLimit": "sportsgameodds:dailyRateLimit",
+    "monthlyLimit": "sportsgameodds:monthlyRateLimit",
+    "planName": "sportsgameodds:subscriptionPlan"
+  }
+}

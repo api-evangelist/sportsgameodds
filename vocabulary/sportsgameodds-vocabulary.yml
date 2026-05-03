@@ -1,0 +1,108 @@
+name: SportsGameOdds Vocabulary
+description: >-
+  Domain vocabulary for the SportsGameOdds API sports betting odds platform, covering
+  terminology for real-time odds, multi-sportsbook aggregation, and betting markets.
+version: '1.0'
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+  - term: OddID
+    definition: >-
+      A composite unique identifier used by SportsGameOdds to precisely identify an
+      odds line. The OddID encodes the event, market type, game period, and sportsbook
+      into a single structured string, enabling reliable odds tracking across updates.
+    synonyms:
+      - Odd Identifier
+
+  - term: Bookmaker
+    definition: >-
+      A licensed sportsbook that accepts and pays out bets. SportsGameOdds aggregates
+      odds from 80+ bookmakers including DraftKings, FanDuel, BetMGM, and international
+      sportsbooks.
+    synonyms:
+      - Sportsbook
+      - Book
+
+  - term: Consensus Odds
+    definition: >-
+      The average or weighted aggregate odds across all sportsbooks for a given
+      betting market, representing the market consensus on probability.
+
+  - term: Game Period
+    definition: >-
+      A subdivision of a sporting event for which odds are offered. Common periods
+      include full game, first half, second half, first quarter, and overtime.
+    related:
+      - First Half
+      - Quarter
+
+  - term: Player Props
+    definition: >-
+      Betting markets based on an individual player's statistical performance in
+      a game, such as passing yards, points scored, or strikeouts.
+    synonyms:
+      - Player Propositions
+
+  - term: Spread
+    definition: >-
+      A point spread bet where the favored team must win by more than the spread
+      (e.g., -7.5 points) for the bet to win. Available across 50+ leagues.
+
+  - term: Total
+    definition: >-
+      A bet on the combined score of both teams in a game, with options to bet
+      Over or Under the posted total line.
+    synonyms:
+      - Over/Under
+
+  - term: Moneyline
+    definition: >-
+      A bet on which team wins the game outright, with odds adjusted for the
+      expected difference in team quality. No point spread involved.
+
+  - term: Data Batching
+    definition: >-
+      A SportsGameOdds API feature enabling multiple data queries to be combined
+      into a single request for efficiency, reducing API call overhead.
+
+  - term: Live Streaming
+    definition: >-
+      A real-time data push mechanism in SportsGameOdds that continuously delivers
+      odds updates as sportsbooks change their lines, without polling.
+
+  - term: Data Explorer
+    definition: >-
+      An interactive SportsGameOdds tool for browsing sports, leagues, teams,
+      events, and odds markets in real-time without writing API code.
+
+  - term: League
+    definition: >-
+      A sports competition organization. SportsGameOdds covers 50+ leagues including
+      NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA Tour, and ATP.
+
+  - term: Market
+    definition: >-
+      A specific type of wager offered on a sporting event. SportsGameOdds covers
+      3,000+ markets across moneylines, spreads, totals, team props, and player props.
+
+  - term: American Odds
+    definition: >-
+      Odds expressed as a positive or negative number (e.g., -110, +150) indicating
+      the amount to risk or profit relative to $100. The standard format in the US.
+
+  - term: Type Safety
+    definition: >-
+      A software development property of SportsGameOdds SDKs that enforces correct
+      data types at compile time, reducing runtime errors in API integrations.
+
+tags:
+  - Sports Betting
+  - Odds
+  - Real-Time Data
+  - NFL
+  - NBA
+  - MLB
+  - NHL
+  - Soccer
+  - UFC
+  - Player Props

@@ -1,0 +1,103 @@
+extends: spectral:oas
+rules:
+  # SportsGameOdds API-specific conventions
+
+  sportsgameodds-operation-tags:
+    description: All operations must have exactly one tag from the approved list.
+    message: "Operation '{{property}}' must include a valid tag (Events, Teams, Players, Sports, Leagues, Stats, Markets, Account)."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+            enum:
+              - Events
+              - Teams
+              - Players
+              - Sports
+              - Leagues
+              - Stats
+              - Markets
+              - Account
+
+  sportsgameodds-paths-trailing-slash:
+    description: Paths should end with a trailing slash per SportsGameOdds convention.
+    message: "Path '{{property}}' should end with a trailing slash (/)."
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*\\/$"
+
+  sportsgameodds-operation-ids-camel-case:
+    description: OperationIds must use camelCase.
+    message: "OperationId '{{value}}' must use camelCase."
+    severity: error
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  sportsgameodds-response-200-required:
+    description: All GET operations must define a 200 response.
+    message: "GET operation must define a 200 response."
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: truthy
+
+  sportsgameodds-apikey-security:
+    description: All operations must use apiKeyHeader security scheme.
+    message: "Operation must require apiKeyHeader authentication."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: security
+      function: truthy
+
+  sportsgameodds-query-param-names-camel-case:
+    description: Query parameter names must use camelCase.
+    message: "Query parameter '{{value}}' must use camelCase naming."
+    severity: warn
+    given: "$.paths[*][*].parameters[?(@.in == 'query')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  sportsgameodds-summary-title-case:
+    description: Operation summaries must use Title Case.
+    message: "Summary '{{value}}' must use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  sportsgameodds-schemas-have-descriptions:
+    description: Schema properties should have descriptions.
+    message: "Schema property should have a description."
+    severity: warn
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy
+
+  sportsgameodds-path-params-in-path:
+    description: Path parameters defined in operation must appear in the path.
+    message: "Path parameter '{{value}}' must be referenced in the path."
+    severity: error
+    given: "$.paths[*][*].parameters[?(@.in == 'path')].name"
+    then:
+      function: truthy

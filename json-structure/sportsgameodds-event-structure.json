@@ -1,0 +1,56 @@
+{
+  "name": "SportsGameOdds Event Structure",
+  "description": "JSON structure documentation for SportsGameOdds event and odds data",
+  "version": "1.0",
+  "structures": [
+    {
+      "name": "Event",
+      "description": "Root object representing a sporting event with associated odds from multiple sportsbooks",
+      "fields": [
+        {"name": "eventId", "type": "string", "required": true, "description": "Unique event identifier"},
+        {"name": "sport", "type": "string", "required": true, "description": "Sport name (football, basketball, baseball, hockey, soccer, mma, golf, tennis)"},
+        {"name": "league", "type": "string", "required": true, "description": "League abbreviation (NFL, NBA, MLB, NHL, EPL, UCL, UFC, PGA, ATP)"},
+        {"name": "startTime", "type": "string (ISO 8601)", "required": true, "description": "Event start time in UTC"},
+        {"name": "status", "type": "string enum", "required": true, "description": "Event status: scheduled | live | completed | cancelled"},
+        {"name": "homeTeam", "type": "Team object", "required": false, "description": "Home team details"},
+        {"name": "awayTeam", "type": "Team object", "required": false, "description": "Away team details"},
+        {"name": "odds", "type": "array of OddsLine", "required": false, "description": "Odds from all sportsbooks for all markets"}
+      ]
+    },
+    {
+      "name": "Team",
+      "description": "Team participating in an event",
+      "fields": [
+        {"name": "teamId", "type": "string", "required": true, "description": "Unique team identifier"},
+        {"name": "name", "type": "string", "required": true, "description": "Full team name"},
+        {"name": "abbreviation", "type": "string", "required": false, "description": "Team abbreviation (e.g., NE, LAL, NYY)"},
+        {"name": "league", "type": "string", "required": false, "description": "League the team competes in"}
+      ]
+    },
+    {
+      "name": "OddsLine",
+      "description": "A single odds line from a specific sportsbook for a given market",
+      "fields": [
+        {"name": "bookmaker", "type": "string", "required": true, "description": "Sportsbook name (DraftKings, FanDuel, BetMGM, etc.)"},
+        {"name": "market", "type": "string enum", "required": true, "description": "Market type: moneyline | spread | total | prop"},
+        {"name": "period", "type": "string enum", "required": false, "description": "Game period: full_game | first_half | first_quarter | etc."},
+        {"name": "oddId", "type": "string", "required": false, "description": "Composite OddID uniquely identifying this odds line"},
+        {"name": "homeOdds", "type": "number", "required": false, "description": "Home team or over odds in American format"},
+        {"name": "awayOdds", "type": "number", "required": false, "description": "Away team or under odds in American format"},
+        {"name": "line", "type": "number", "required": false, "description": "Point spread or total line value"},
+        {"name": "lastUpdated", "type": "string (ISO 8601)", "required": false, "description": "Last odds update timestamp"}
+      ]
+    },
+    {
+      "name": "UsageStats",
+      "description": "API usage and rate limit information for an account",
+      "fields": [
+        {"name": "requestsToday", "type": "integer", "required": true, "description": "Number of API requests made today"},
+        {"name": "requestsMonth", "type": "integer", "required": true, "description": "Number of API requests made this month"},
+        {"name": "dailyLimit", "type": "integer", "required": true, "description": "Daily request limit for the current plan"},
+        {"name": "monthlyLimit", "type": "integer", "required": true, "description": "Monthly request limit for the current plan"},
+        {"name": "planName", "type": "string", "required": true, "description": "Name of the current subscription plan"}
+      ]
+    }
+  ]
+}
