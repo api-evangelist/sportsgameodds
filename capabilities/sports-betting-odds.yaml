@@ -1,323 +1,553 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "SportsGameOdds Sports Betting Odds"
-  description: >-
-    Unified sports betting odds capability composing SportsGameOdds data to support
-    odds comparison, event monitoring, player prop research, and market discovery
-    across 80+ sportsbooks and 50+ leagues. Used by sports bettors, traders, and
+  label: SportsGameOdds Sports Betting Odds
+  description: Unified sports betting odds capability composing SportsGameOdds data to support odds comparison, event monitoring,
+    player prop research, and market discovery across 80+ sportsbooks and 50+ leagues. Used by sports bettors, traders, and
     fantasy sports analysts.
   tags:
-    - Sports Betting
-    - Odds
-    - NFL
-    - NBA
-    - MLB
-    - NHL
-    - Soccer
-    - UFC
-    - Player Props
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - Sports Betting
+  - Odds
+  - NFL
+  - NBA
+  - MLB
+  - NHL
+  - Soccer
+  - UFC
+  - Player Props
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SPORTSGAMEODDS_API_KEY: SPORTSGAMEODDS_API_KEY
-
+- namespace: env
+  keys:
+    SPORTSGAMEODDS_API_KEY: SPORTSGAMEODDS_API_KEY
 capability:
   consumes:
-    - import: sportsgameodds
-      location: ./shared/sportsgameodds.yaml
-
+  - type: http
+    namespace: sportsgameodds
+    baseUri: https://api.sportsgameodds.com/v1
+    description: SportsGameOdds REST API for real-time sports betting odds data
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{SPORTSGAMEODDS_API_KEY}}'
+      placement: header
+    resources:
+    - name: events
+      path: /events/
+      description: Sporting events with live odds from multiple sportsbooks
+      operations:
+      - name: list-events
+        method: GET
+        description: List sporting events with optional sport, league, status, and date filters
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          required: false
+          description: Sport filter (football, basketball, baseball, hockey, soccer)
+        - name: league
+          in: query
+          type: string
+          required: false
+          description: League filter (NFL, NBA, MLB, NHL, EPL, etc.)
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Event status filter (scheduled, live, completed)
+        - name: dateFrom
+          in: query
+          type: string
+          required: false
+          description: Start date filter (ISO 8601 date)
+        - name: dateTo
+          in: query
+          type: string
+          required: false
+          description: End date filter (ISO 8601 date)
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum results to return (max 500)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-event
+        method: GET
+        description: Get a specific sporting event by ID with odds and scores
+        inputParameters:
+        - name: eventId
+          in: path
+          type: string
+          required: true
+          description: Unique event identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams
+      path: /teams/
+      description: Sports teams data
+      operations:
+      - name: list-teams
+        method: GET
+        description: List teams with optional sport and league filters
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          required: false
+          description: Filter by sport
+        - name: league
+          in: query
+          type: string
+          required: false
+          description: Filter by league
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-team
+        method: GET
+        description: Get a specific team by ID
+        inputParameters:
+        - name: teamId
+          in: path
+          type: string
+          required: true
+          description: Unique team identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: players
+      path: /players/
+      description: Sports players data including props odds
+      operations:
+      - name: list-players
+        method: GET
+        description: List players with optional team, sport, and league filters
+        inputParameters:
+        - name: teamId
+          in: query
+          type: string
+          required: false
+          description: Filter by team ID
+        - name: sport
+          in: query
+          type: string
+          required: false
+          description: Filter by sport
+        - name: league
+          in: query
+          type: string
+          required: false
+          description: Filter by league
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-player
+        method: GET
+        description: Get a specific player by ID
+        inputParameters:
+        - name: playerId
+          in: path
+          type: string
+          required: true
+          description: Unique player identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sports
+      path: /sports/
+      description: Supported sports catalog
+      operations:
+      - name: list-sports
+        method: GET
+        description: List all supported sports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: leagues
+      path: /leagues/
+      description: Supported leagues catalog
+      operations:
+      - name: list-leagues
+        method: GET
+        description: List all supported leagues with optional sport filter
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          required: false
+          description: Filter leagues by sport
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: markets
+      path: /markets/
+      description: Supported betting market types
+      operations:
+      - name: list-markets
+        method: GET
+        description: List all supported betting markets including moneylines, spreads, totals, and props
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          required: false
+          description: Filter markets by sport
+        - name: betType
+          in: query
+          type: string
+          required: false
+          description: Filter by bet type (moneyline, spread, total, prop)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: stats
+      path: /stats/
+      description: Game and player statistical data
+      operations:
+      - name: list-stats
+        method: GET
+        description: Retrieve statistical data for events
+        inputParameters:
+        - name: eventId
+          in: query
+          type: string
+          required: false
+          description: Filter by event ID
+        - name: sport
+          in: query
+          type: string
+          required: false
+          description: Filter by sport
+        - name: league
+          in: query
+          type: string
+          required: false
+          description: Filter by league
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: account
+      path: /account/usage/
+      description: API account usage and rate limit information
+      operations:
+      - name: get-usage
+        method: GET
+        description: Get current API usage metrics and rate limit status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: sports-betting-odds-api
-      description: "Unified REST API for sports betting odds comparison and research."
-      resources:
-        - path: /v1/events
-          name: events
-          description: "Sporting events with live odds from multiple sportsbooks"
-          operations:
-            - method: GET
-              name: list-events
-              description: "List sporting events with sport, league, and status filters"
-              call: "sportsgameodds.list-events"
-              with:
-                sport: "rest.sport"
-                league: "rest.league"
-                status: "rest.status"
-                dateFrom: "rest.dateFrom"
-                dateTo: "rest.dateTo"
-                limit: "rest.limit"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/events/{eventId}
-          name: event
-          description: "Single sporting event with complete odds across all sportsbooks"
-          operations:
-            - method: GET
-              name: get-event
-              description: "Get event with full multi-sportsbook odds"
-              call: "sportsgameodds.get-event"
-              with:
-                eventId: "rest.eventId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/teams
-          name: teams
-          description: "Sports teams"
-          operations:
-            - method: GET
-              name: list-teams
-              description: "List teams by sport or league"
-              call: "sportsgameodds.list-teams"
-              with:
-                sport: "rest.sport"
-                league: "rest.league"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/teams/{teamId}
-          name: team
-          description: "Individual sports team"
-          operations:
-            - method: GET
-              name: get-team
-              description: "Get team by ID"
-              call: "sportsgameodds.get-team"
-              with:
-                teamId: "rest.teamId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/players
-          name: players
-          description: "Athletes for player prop research"
-          operations:
-            - method: GET
-              name: list-players
-              description: "List players by team, sport, or league"
-              call: "sportsgameodds.list-players"
-              with:
-                teamId: "rest.teamId"
-                sport: "rest.sport"
-                league: "rest.league"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/players/{playerId}
-          name: player
-          description: "Individual athlete with props data"
-          operations:
-            - method: GET
-              name: get-player
-              description: "Get player by ID"
-              call: "sportsgameodds.get-player"
-              with:
-                playerId: "rest.playerId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/sports
-          name: sports
-          description: "Supported sports catalog"
-          operations:
-            - method: GET
-              name: list-sports
-              description: "List all 50+ covered sports"
-              call: "sportsgameodds.list-sports"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/leagues
-          name: leagues
-          description: "Supported leagues catalog"
-          operations:
-            - method: GET
-              name: list-leagues
-              description: "List all leagues with optional sport filter"
-              call: "sportsgameodds.list-leagues"
-              with:
-                sport: "rest.sport"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/markets
-          name: markets
-          description: "Betting market types"
-          operations:
-            - method: GET
-              name: list-markets
-              description: "List available betting markets (moneylines, spreads, totals, props)"
-              call: "sportsgameodds.list-markets"
-              with:
-                sport: "rest.sport"
-                betType: "rest.betType"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/stats
-          name: stats
-          description: "Game and player statistics"
-          operations:
-            - method: GET
-              name: list-stats
-              description: "Retrieve statistical data for events"
-              call: "sportsgameodds.list-stats"
-              with:
-                eventId: "rest.eventId"
-                sport: "rest.sport"
-                league: "rest.league"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/account/usage
-          name: usage
-          description: "API usage and rate limit status"
-          operations:
-            - method: GET
-              name: get-usage
-              description: "Get API usage metrics"
-              call: "sportsgameodds.get-usage"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9080
-      namespace: sports-betting-odds-mcp
-      transport: http
-      description: "MCP server for AI-assisted sports betting odds research and comparison."
-      tools:
-        - name: list-events
-          description: "List sporting events with live odds. Filter by sport (NFL, NBA, etc.), league, and status (scheduled/live/completed)."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.list-events"
-          with:
-            sport: "tools.sport"
-            league: "tools.league"
-            status: "tools.status"
-            dateFrom: "tools.dateFrom"
-            dateTo: "tools.dateTo"
-            limit: "tools.limit"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-event
-          description: "Get full odds for a specific event from all 80+ sportsbooks across all markets."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.get-event"
-          with:
-            eventId: "tools.eventId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-teams
-          description: "List sports teams for a given sport or league."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.list-teams"
-          with:
-            sport: "tools.sport"
-            league: "tools.league"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-team
-          description: "Get details for a specific sports team by ID."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.get-team"
-          with:
-            teamId: "tools.teamId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-players
-          description: "List athletes for player prop research by team, sport, or league."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.list-players"
-          with:
-            teamId: "tools.teamId"
-            sport: "tools.sport"
-            league: "tools.league"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-player
-          description: "Get player details and props odds by player ID."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.get-player"
-          with:
-            playerId: "tools.playerId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-sports
-          description: "List all 50+ sports covered by SportsGameOdds."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.list-sports"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-leagues
-          description: "List all covered leagues (NFL, NBA, MLB, NHL, EPL, UCL, UFC, PGA, ATP, etc.)."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.list-leagues"
-          with:
-            sport: "tools.sport"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-markets
-          description: "List available betting market types — moneylines, spreads, totals, team props, and player props."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.list-markets"
-          with:
-            sport: "tools.sport"
-            betType: "tools.betType"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-stats
-          description: "Retrieve statistical data for events by sport or league."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "sportsgameodds.list-stats"
-          with:
-            eventId: "tools.eventId"
-            sport: "tools.sport"
-            league: "tools.league"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-account-usage
-          description: "Get current API usage metrics and remaining rate limit quota."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "sportsgameodds.get-usage"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: sports-betting-odds-api
+    description: Unified REST API for sports betting odds comparison and research.
+    resources:
+    - path: /v1/events
+      name: events
+      description: Sporting events with live odds from multiple sportsbooks
+      operations:
+      - method: GET
+        name: list-events
+        description: List sporting events with sport, league, and status filters
+        call: sportsgameodds.list-events
+        with:
+          sport: rest.sport
+          league: rest.league
+          status: rest.status
+          dateFrom: rest.dateFrom
+          dateTo: rest.dateTo
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events/{eventId}
+      name: event
+      description: Single sporting event with complete odds across all sportsbooks
+      operations:
+      - method: GET
+        name: get-event
+        description: Get event with full multi-sportsbook odds
+        call: sportsgameodds.get-event
+        with:
+          eventId: rest.eventId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams
+      name: teams
+      description: Sports teams
+      operations:
+      - method: GET
+        name: list-teams
+        description: List teams by sport or league
+        call: sportsgameodds.list-teams
+        with:
+          sport: rest.sport
+          league: rest.league
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamId}
+      name: team
+      description: Individual sports team
+      operations:
+      - method: GET
+        name: get-team
+        description: Get team by ID
+        call: sportsgameodds.get-team
+        with:
+          teamId: rest.teamId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/players
+      name: players
+      description: Athletes for player prop research
+      operations:
+      - method: GET
+        name: list-players
+        description: List players by team, sport, or league
+        call: sportsgameodds.list-players
+        with:
+          teamId: rest.teamId
+          sport: rest.sport
+          league: rest.league
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/players/{playerId}
+      name: player
+      description: Individual athlete with props data
+      operations:
+      - method: GET
+        name: get-player
+        description: Get player by ID
+        call: sportsgameodds.get-player
+        with:
+          playerId: rest.playerId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sports
+      name: sports
+      description: Supported sports catalog
+      operations:
+      - method: GET
+        name: list-sports
+        description: List all 50+ covered sports
+        call: sportsgameodds.list-sports
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/leagues
+      name: leagues
+      description: Supported leagues catalog
+      operations:
+      - method: GET
+        name: list-leagues
+        description: List all leagues with optional sport filter
+        call: sportsgameodds.list-leagues
+        with:
+          sport: rest.sport
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/markets
+      name: markets
+      description: Betting market types
+      operations:
+      - method: GET
+        name: list-markets
+        description: List available betting markets (moneylines, spreads, totals, props)
+        call: sportsgameodds.list-markets
+        with:
+          sport: rest.sport
+          betType: rest.betType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stats
+      name: stats
+      description: Game and player statistics
+      operations:
+      - method: GET
+        name: list-stats
+        description: Retrieve statistical data for events
+        call: sportsgameodds.list-stats
+        with:
+          eventId: rest.eventId
+          sport: rest.sport
+          league: rest.league
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account/usage
+      name: usage
+      description: API usage and rate limit status
+      operations:
+      - method: GET
+        name: get-usage
+        description: Get API usage metrics
+        call: sportsgameodds.get-usage
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9080
+    namespace: sports-betting-odds-mcp
+    transport: http
+    description: MCP server for AI-assisted sports betting odds research and comparison.
+    tools:
+    - name: list-events
+      description: List sporting events with live odds. Filter by sport (NFL, NBA, etc.), league, and status (scheduled/live/completed).
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.list-events
+      with:
+        sport: tools.sport
+        league: tools.league
+        status: tools.status
+        dateFrom: tools.dateFrom
+        dateTo: tools.dateTo
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-event
+      description: Get full odds for a specific event from all 80+ sportsbooks across all markets.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.get-event
+      with:
+        eventId: tools.eventId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-teams
+      description: List sports teams for a given sport or league.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.list-teams
+      with:
+        sport: tools.sport
+        league: tools.league
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-team
+      description: Get details for a specific sports team by ID.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.get-team
+      with:
+        teamId: tools.teamId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-players
+      description: List athletes for player prop research by team, sport, or league.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.list-players
+      with:
+        teamId: tools.teamId
+        sport: tools.sport
+        league: tools.league
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-player
+      description: Get player details and props odds by player ID.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.get-player
+      with:
+        playerId: tools.playerId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-sports
+      description: List all 50+ sports covered by SportsGameOdds.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.list-sports
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-leagues
+      description: List all covered leagues (NFL, NBA, MLB, NHL, EPL, UCL, UFC, PGA, ATP, etc.).
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.list-leagues
+      with:
+        sport: tools.sport
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-markets
+      description: List available betting market types — moneylines, spreads, totals, team props, and player props.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.list-markets
+      with:
+        sport: tools.sport
+        betType: tools.betType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-stats
+      description: Retrieve statistical data for events by sport or league.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: sportsgameodds.list-stats
+      with:
+        eventId: tools.eventId
+        sport: tools.sport
+        league: tools.league
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-account-usage
+      description: Get current API usage metrics and remaining rate limit quota.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: sportsgameodds.get-usage
+      outputParameters:
+      - type: object
+        mapping: $.
