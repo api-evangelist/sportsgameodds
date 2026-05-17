@@ -53,7 +53,7 @@ apis:
       - type: OpenAPI
         url: >-
           https://raw.githubusercontent.com/api-evangelist/sportsgameodds/refs/heads/main/openapi/sportsgameodds-openapi.yml
-      - type: Getting Started
+      - type: GettingStarted
         url: https://sportsgameodds.com/docs/v1/setup/getting-started
       - type: Explorer
         url: https://sportsgameodds.com/docs/explorer
