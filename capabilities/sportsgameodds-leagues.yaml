@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SportsGameOdds API — Leagues
+  description: 'SportsGameOdds API — Leagues. 1 operations. Lead operation: List Leagues. Self-contained Naftiko capability
+    covering one Sportsgameodds business surface.'
+  tags:
+  - Sportsgameodds
+  - Leagues
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPORTSGAMEODDS_API_KEY: SPORTSGAMEODDS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sportsgameodds-leagues
+    baseUri: https://api.sportsgameodds.com/v1
+    description: SportsGameOdds API — Leagues business capability. Self-contained, no shared references.
+    resources:
+    - name: leagues
+      path: /leagues/
+      operations:
+      - name: listleagues
+        method: GET
+        description: List Leagues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Filter by sport
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.SPORTSGAMEODDS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: sportsgameodds-leagues-rest
+    port: 8080
+    description: REST adapter for SportsGameOdds API — Leagues. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/leagues
+      name: leagues
+      description: REST surface for leagues.
+      operations:
+      - method: GET
+        name: listleagues
+        description: List Leagues
+        call: sportsgameodds-leagues.listleagues
+        with:
+          sport: rest.sport
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sportsgameodds-leagues-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SportsGameOdds API — Leagues. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-leagues
+      description: List Leagues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsgameodds-leagues.listleagues
+      with:
+        sport: tools.sport
+      outputParameters:
+      - type: object
+        mapping: $.

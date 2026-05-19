@@ -1,0 +1,93 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SportsGameOdds API — Stats
+  description: 'SportsGameOdds API — Stats. 1 operations. Lead operation: List Stats. Self-contained Naftiko capability covering
+    one Sportsgameodds business surface.'
+  tags:
+  - Sportsgameodds
+  - Stats
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPORTSGAMEODDS_API_KEY: SPORTSGAMEODDS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sportsgameodds-stats
+    baseUri: https://api.sportsgameodds.com/v1
+    description: SportsGameOdds API — Stats business capability. Self-contained, no shared references.
+    resources:
+    - name: stats
+      path: /stats/
+      operations:
+      - name: liststats
+        method: GET
+        description: List Stats
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventId
+          in: query
+          type: string
+          description: Filter by event ID
+        - name: sport
+          in: query
+          type: string
+          description: Filter by sport
+        - name: league
+          in: query
+          type: string
+          description: Filter by league
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.SPORTSGAMEODDS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: sportsgameodds-stats-rest
+    port: 8080
+    description: REST adapter for SportsGameOdds API — Stats. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/stats
+      name: stats
+      description: REST surface for stats.
+      operations:
+      - method: GET
+        name: liststats
+        description: List Stats
+        call: sportsgameodds-stats.liststats
+        with:
+          eventId: rest.eventId
+          sport: rest.sport
+          league: rest.league
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sportsgameodds-stats-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SportsGameOdds API — Stats. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-stats
+      description: List Stats
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsgameodds-stats.liststats
+      with:
+        eventId: tools.eventId
+        sport: tools.sport
+        league: tools.league
+      outputParameters:
+      - type: object
+        mapping: $.

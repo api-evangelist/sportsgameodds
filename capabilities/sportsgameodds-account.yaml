@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SportsGameOdds API — Account
+  description: 'SportsGameOdds API — Account. 1 operations. Lead operation: Get Account Usage. Self-contained Naftiko capability
+    covering one Sportsgameodds business surface.'
+  tags:
+  - Sportsgameodds
+  - Account
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPORTSGAMEODDS_API_KEY: SPORTSGAMEODDS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sportsgameodds-account
+    baseUri: https://api.sportsgameodds.com/v1
+    description: SportsGameOdds API — Account business capability. Self-contained, no shared references.
+    resources:
+    - name: account-usage
+      path: /account/usage/
+      operations:
+      - name: getaccountusage
+        method: GET
+        description: Get Account Usage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.SPORTSGAMEODDS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: sportsgameodds-account-rest
+    port: 8080
+    description: REST adapter for SportsGameOdds API — Account. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/account/usage
+      name: account-usage
+      description: REST surface for account-usage.
+      operations:
+      - method: GET
+        name: getaccountusage
+        description: Get Account Usage
+        call: sportsgameodds-account.getaccountusage
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sportsgameodds-account-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SportsGameOdds API — Account. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-account-usage
+      description: Get Account Usage
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsgameodds-account.getaccountusage
+      outputParameters:
+      - type: object
+        mapping: $.
