@@ -86,6 +86,8 @@ common:
   url: https://github.com/SportsGameOdds/sports-odds-api-go
 - type: SDK
   url: https://github.com/SportsGameOdds/sports-odds-api-ruby
+- type: LLMsTxt
+  url: https://sportsgameodds.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
