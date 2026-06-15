@@ -1,0 +1,341 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SportsGameOdds API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/events/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport (e.g., football, basketball, baseball)"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "Filter by league (e.g., NFL, NBA, EPL)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event status"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Start date filter (ISO 8601 format)"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "End date filter (ISO 8601 format)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of sporting events with optional filters for sport, league, status, and date range."
+        },
+        {
+          "info": {
+            "name": "Get Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/events/:eventId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "Unique event identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific sporting event by its ID including live odds and scores."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/teams/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "Filter by league"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of teams with optional filters for sport and league."
+        },
+        {
+          "info": {
+            "name": "Get Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/teams/:teamId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path",
+                "description": "Unique team identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific team by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Players",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Players",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/players/",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by team ID"
+              },
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "Filter by league"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of players with optional filters for team, sport, and league."
+        },
+        {
+          "info": {
+            "name": "Get Player",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/players/:playerId",
+            "params": [
+              {
+                "name": "playerId",
+                "value": "",
+                "type": "path",
+                "description": "Unique player identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific player by their ID including props odds and statistics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Sports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/sports/"
+          },
+          "docs": "Retrieve all supported sports with their available leagues."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Leagues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Leagues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/leagues/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport"
+              }
+            ]
+          },
+          "docs": "Retrieve all supported leagues with optional sport filter."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/stats/",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event ID"
+              },
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "Filter by league"
+              }
+            ]
+          },
+          "docs": "Retrieve statistical data for events with optional filters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Markets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Markets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/markets/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter markets by sport"
+              },
+              {
+                "name": "betType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by bet type"
+              }
+            ]
+          },
+          "docs": "Retrieve all supported betting market types including moneylines, spreads, totals, and props."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/account/usage/"
+          },
+          "docs": "Retrieve current API usage metrics including request counts and rate limit status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
