@@ -54,6 +54,10 @@ apis:
       - type: Explorer
         url: https://sportsgameodds.com/docs/explorer
 common:
+  - type: DomainSecurity
+    url: security/sportsgameodds-domain-security.yml
+  - type: Authentication
+    url: authentication/sportsgameodds-authentication.yml
   - type: Website
     url: https://sportsgameodds.com/
   - type: Portal
@@ -76,6 +80,8 @@ common:
     url: https://github.com/SportsGameOdds/sports-odds-api-ruby
   - type: LlmsText
     url: https://sportsgameodds.com/llms.txt
+  - url: https://sportsgameodds.com/blog
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
