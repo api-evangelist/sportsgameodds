@@ -54,6 +54,8 @@ apis:
       - type: Explorer
         url: https://sportsgameodds.com/docs/explorer
 common:
+  - type: AgenticAccess
+    url: agentic-access/sportsgameodds-agentic-access.yml
   - type: DomainSecurity
     url: security/sportsgameodds-domain-security.yml
   - type: Authentication
