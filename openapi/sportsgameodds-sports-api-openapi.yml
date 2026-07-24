@@ -1,0 +1,53 @@
+openapi: 3.1.0
+info:
+  title: SportsGameOdds Account Sports API
+  description: SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.
+  version: '1.0'
+  contact:
+    url: https://sportsgameodds.com/
+  termsOfService: https://sportsgameodds.com/terms
+servers:
+- url: https://api.sportsgameodds.com/v1
+  description: Production server
+security:
+- apiKeyHeader: []
+tags:
+- name: Sports
+paths:
+  /sports/:
+    get:
+      operationId: listSports
+      summary: List Sports
+      description: Retrieve all supported sports with their available leagues.
+      tags:
+      - Sports
+      responses:
+        '200':
+          description: List of sports
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sport'
+components:
+  schemas:
+    Sport:
+      type: object
+      properties:
+        sportId:
+          type: string
+        name:
+          type: string
+        leagues:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

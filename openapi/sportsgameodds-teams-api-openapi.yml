@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: SportsGameOdds Account Teams API
+  description: SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.
+  version: '1.0'
+  contact:
+    url: https://sportsgameodds.com/
+  termsOfService: https://sportsgameodds.com/terms
+servers:
+- url: https://api.sportsgameodds.com/v1
+  description: Production server
+security:
+- apiKeyHeader: []
+tags:
+- name: Teams
+paths:
+  /teams/:
+    get:
+      operationId: listTeams
+      summary: List Teams
+      description: Retrieve a list of teams with optional filters for sport and league.
+      tags:
+      - Teams
+      parameters:
+      - name: sport
+        in: query
+        required: false
+        description: Filter by sport
+        schema:
+          type: string
+      - name: league
+        in: query
+        required: false
+        description: Filter by league
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of teams
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+  /teams/{teamId}:
+    get:
+      operationId: getTeam
+      summary: Get Team
+      description: Retrieve a specific team by its ID.
+      tags:
+      - Teams
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        description: Unique team identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Team details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '404':
+          description: Team not found
+components:
+  schemas:
+    Team:
+      type: object
+      properties:
+        teamId:
+          type: string
+        name:
+          type: string
+        abbreviation:
+          type: string
+        league:
+          type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

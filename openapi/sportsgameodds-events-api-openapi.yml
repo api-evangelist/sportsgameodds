@@ -1,0 +1,185 @@
+openapi: 3.1.0
+info:
+  title: SportsGameOdds Account Events API
+  description: SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.
+  version: '1.0'
+  contact:
+    url: https://sportsgameodds.com/
+  termsOfService: https://sportsgameodds.com/terms
+servers:
+- url: https://api.sportsgameodds.com/v1
+  description: Production server
+security:
+- apiKeyHeader: []
+tags:
+- name: Events
+paths:
+  /events/:
+    get:
+      operationId: listEvents
+      summary: List Events
+      description: Retrieve a list of sporting events with optional filters for sport, league, status, and date range.
+      tags:
+      - Events
+      parameters:
+      - name: sport
+        in: query
+        required: false
+        description: Filter by sport (e.g., football, basketball, baseball)
+        schema:
+          type: string
+      - name: league
+        in: query
+        required: false
+        description: Filter by league (e.g., NFL, NBA, EPL)
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        description: Filter by event status
+        schema:
+          type: string
+          enum:
+          - scheduled
+          - live
+          - completed
+      - name: dateFrom
+        in: query
+        required: false
+        description: Start date filter (ISO 8601 format)
+        schema:
+          type: string
+          format: date
+      - name: dateTo
+        in: query
+        required: false
+        description: End date filter (ISO 8601 format)
+        schema:
+          type: string
+          format: date
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return
+        schema:
+          type: integer
+          default: 100
+          maximum: 500
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+                  total:
+                    type: integer
+  /events/{eventId}:
+    get:
+      operationId: getEvent
+      summary: Get Event
+      description: Retrieve a specific sporting event by its ID including live odds and scores.
+      tags:
+      - Events
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: Unique event identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Event details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Event not found
+components:
+  schemas:
+    OddsLine:
+      type: object
+      properties:
+        bookmaker:
+          type: string
+          description: Sportsbook name
+        market:
+          type: string
+          description: Betting market type (spread, moneyline, total, prop)
+        period:
+          type: string
+          description: Game period (full_game, first_half, first_quarter)
+        oddId:
+          type: string
+          description: Unique odds identifier in OddID format
+        homeOdds:
+          type: number
+          format: float
+          description: Odds for home team or over in American format
+        awayOdds:
+          type: number
+          format: float
+          description: Odds for away team or under in American format
+        line:
+          type: number
+          format: float
+          description: Point spread or total line value
+        lastUpdated:
+          type: string
+          format: date-time
+    Event:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: Unique identifier for the event
+        sport:
+          type: string
+          description: Sport name
+        league:
+          type: string
+          description: League name
+        startTime:
+          type: string
+          format: date-time
+          description: Event start time in UTC
+        status:
+          type: string
+          enum:
+          - scheduled
+          - live
+          - completed
+          - cancelled
+          description: Current event status
+        homeTeam:
+          $ref: '#/components/schemas/Team'
+        awayTeam:
+          $ref: '#/components/schemas/Team'
+        odds:
+          type: array
+          items:
+            $ref: '#/components/schemas/OddsLine'
+    Team:
+      type: object
+      properties:
+        teamId:
+          type: string
+        name:
+          type: string
+        abbreviation:
+          type: string
+        league:
+          type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
