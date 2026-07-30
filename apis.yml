@@ -7,9 +7,22 @@ description: >-
   calculations, streaming for live data, an interactive data explorer, and official SDKs for JavaScript/TypeScript and
   Python.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sportsgameodds.png
 tags:
   - Sports Betting
   - Odds
@@ -21,38 +34,150 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/sportsgameodds/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: sportsgameodds:sportsgameodds
-    name: SportsGameOdds API
-    description: >-
-      Real-time sports betting odds API aggregating data from 80+ sportsbooks with 50+ leagues including NFL, NBA, MLB,
-      NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. Covers 3,000+ betting markets with moneylines, spreads, totals,
-      team props, and player props. Includes consensus odds, live streaming data, and an interactive data explorer.
-      Official SDKs available for JavaScript, TypeScript, Python, Java, Go, and Ruby.
-    humanURL: https://sportsgameodds.com/
-    baseURL: https://api.sportsgameodds.com/v1
-    tags:
-      - Sports Betting
-      - Odds
-      - NFL
-      - NBA
-      - MLB
-      - NHL
-      - Soccer
-      - UFC
-      - Player Props
-      - Live Scores
-    properties:
-      - type: Documentation
-        url: https://sportsgameodds.com/docs/
-      - type: Reference
-        url: https://sportsgameodds.com/docs/reference
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/sportsgameodds/refs/heads/main/openapi/sportsgameodds-openapi.yml
-      - type: GettingStarted
-        url: https://sportsgameodds.com/docs/v1/setup/getting-started
-      - type: Explorer
-        url: https://sportsgameodds.com/docs/explorer
+- aid: sportsgameodds:sportsgameodds-account-api
+  name: SportsGameOdds Account API
+  description: The Account API from SportsGameOdds — 1 operation(s) for account.
+  humanURL: https://sportsgameodds.com/
+  baseURL: https://api.sportsgameodds.com/v1
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsgameodds-account-api-openapi.yml
+  - type: Documentation
+    url: https://sportsgameodds.com/docs/
+  - type: Reference
+    url: https://sportsgameodds.com/docs/reference
+  - type: GettingStarted
+    url: https://sportsgameodds.com/docs/v1/setup/getting-started
+  - type: Explorer
+    url: https://sportsgameodds.com/docs/explorer
+- aid: sportsgameodds:sportsgameodds-events-api
+  name: SportsGameOdds Events API
+  description: The Events API from SportsGameOdds — 2 operation(s) for events.
+  humanURL: https://sportsgameodds.com/
+  baseURL: https://api.sportsgameodds.com/v1
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsgameodds-events-api-openapi.yml
+  - type: Documentation
+    url: https://sportsgameodds.com/docs/
+  - type: Reference
+    url: https://sportsgameodds.com/docs/reference
+  - type: GettingStarted
+    url: https://sportsgameodds.com/docs/v1/setup/getting-started
+  - type: Explorer
+    url: https://sportsgameodds.com/docs/explorer
+- aid: sportsgameodds:sportsgameodds-leagues-api
+  name: SportsGameOdds Leagues API
+  description: The Leagues API from SportsGameOdds — 1 operation(s) for leagues.
+  humanURL: https://sportsgameodds.com/
+  baseURL: https://api.sportsgameodds.com/v1
+  tags:
+  - Leagues
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsgameodds-leagues-api-openapi.yml
+  - type: Documentation
+    url: https://sportsgameodds.com/docs/
+  - type: Reference
+    url: https://sportsgameodds.com/docs/reference
+  - type: GettingStarted
+    url: https://sportsgameodds.com/docs/v1/setup/getting-started
+  - type: Explorer
+    url: https://sportsgameodds.com/docs/explorer
+- aid: sportsgameodds:sportsgameodds-markets-api
+  name: SportsGameOdds Markets API
+  description: The Markets API from SportsGameOdds — 1 operation(s) for markets.
+  humanURL: https://sportsgameodds.com/
+  baseURL: https://api.sportsgameodds.com/v1
+  tags:
+  - Markets
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsgameodds-markets-api-openapi.yml
+  - type: Documentation
+    url: https://sportsgameodds.com/docs/
+  - type: Reference
+    url: https://sportsgameodds.com/docs/reference
+  - type: GettingStarted
+    url: https://sportsgameodds.com/docs/v1/setup/getting-started
+  - type: Explorer
+    url: https://sportsgameodds.com/docs/explorer
+- aid: sportsgameodds:sportsgameodds-players-api
+  name: SportsGameOdds Players API
+  description: The Players API from SportsGameOdds — 2 operation(s) for players.
+  humanURL: https://sportsgameodds.com/
+  baseURL: https://api.sportsgameodds.com/v1
+  tags:
+  - Players
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsgameodds-players-api-openapi.yml
+  - type: Documentation
+    url: https://sportsgameodds.com/docs/
+  - type: Reference
+    url: https://sportsgameodds.com/docs/reference
+  - type: GettingStarted
+    url: https://sportsgameodds.com/docs/v1/setup/getting-started
+  - type: Explorer
+    url: https://sportsgameodds.com/docs/explorer
+- aid: sportsgameodds:sportsgameodds-sports-api
+  name: SportsGameOdds Sports API
+  description: The Sports API from SportsGameOdds — 1 operation(s) for sports.
+  humanURL: https://sportsgameodds.com/
+  baseURL: https://api.sportsgameodds.com/v1
+  tags:
+  - Sports
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsgameodds-sports-api-openapi.yml
+  - type: Documentation
+    url: https://sportsgameodds.com/docs/
+  - type: Reference
+    url: https://sportsgameodds.com/docs/reference
+  - type: GettingStarted
+    url: https://sportsgameodds.com/docs/v1/setup/getting-started
+  - type: Explorer
+    url: https://sportsgameodds.com/docs/explorer
+- aid: sportsgameodds:sportsgameodds-stats-api
+  name: SportsGameOdds Stats API
+  description: The Stats API from SportsGameOdds — 1 operation(s) for stats.
+  humanURL: https://sportsgameodds.com/
+  baseURL: https://api.sportsgameodds.com/v1
+  tags:
+  - Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsgameodds-stats-api-openapi.yml
+  - type: Documentation
+    url: https://sportsgameodds.com/docs/
+  - type: Reference
+    url: https://sportsgameodds.com/docs/reference
+  - type: GettingStarted
+    url: https://sportsgameodds.com/docs/v1/setup/getting-started
+  - type: Explorer
+    url: https://sportsgameodds.com/docs/explorer
+- aid: sportsgameodds:sportsgameodds-teams-api
+  name: SportsGameOdds Teams API
+  description: The Teams API from SportsGameOdds — 2 operation(s) for teams.
+  humanURL: https://sportsgameodds.com/
+  baseURL: https://api.sportsgameodds.com/v1
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsgameodds-teams-api-openapi.yml
+  - type: Documentation
+    url: https://sportsgameodds.com/docs/
+  - type: Reference
+    url: https://sportsgameodds.com/docs/reference
+  - type: GettingStarted
+    url: https://sportsgameodds.com/docs/v1/setup/getting-started
+  - type: Explorer
+    url: https://sportsgameodds.com/docs/explorer
 common:
   - type: AgenticAccess
     url: agentic-access/sportsgameodds-agentic-access.yml
