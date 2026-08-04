@@ -1,0 +1,512 @@
+openapi: 3.1.0
+info:
+  title: SportsGameOdds API
+  description: >-
+    SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks
+    across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA,
+    and ATP. The API delivers live and pre-match odds across 3,000+ markets including
+    moneylines, spreads, over/unders, team props, and player props, with official SDKs
+    for JavaScript/TypeScript and Python.
+  version: '1.0'
+  contact:
+    url: https://sportsgameodds.com/
+  termsOfService: https://sportsgameodds.com/terms
+servers:
+  - url: https://api.sportsgameodds.com/v1
+    description: Production server
+security:
+  - apiKeyHeader: []
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    Event:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: Unique identifier for the event
+        sport:
+          type: string
+          description: Sport name
+        league:
+          type: string
+          description: League name
+        startTime:
+          type: string
+          format: date-time
+          description: Event start time in UTC
+        status:
+          type: string
+          enum: [scheduled, live, completed, cancelled]
+          description: Current event status
+        homeTeam:
+          $ref: '#/components/schemas/Team'
+        awayTeam:
+          $ref: '#/components/schemas/Team'
+        odds:
+          type: array
+          items:
+            $ref: '#/components/schemas/OddsLine'
+    Team:
+      type: object
+      properties:
+        teamId:
+          type: string
+        name:
+          type: string
+        abbreviation:
+          type: string
+        league:
+          type: string
+    Player:
+      type: object
+      properties:
+        playerId:
+          type: string
+        name:
+          type: string
+        team:
+          type: string
+        position:
+          type: string
+        league:
+          type: string
+    Sport:
+      type: object
+      properties:
+        sportId:
+          type: string
+        name:
+          type: string
+        leagues:
+          type: array
+          items:
+            type: string
+    League:
+      type: object
+      properties:
+        leagueId:
+          type: string
+        name:
+          type: string
+        sport:
+          type: string
+        country:
+          type: string
+    OddsLine:
+      type: object
+      properties:
+        bookmaker:
+          type: string
+          description: Sportsbook name
+        market:
+          type: string
+          description: Betting market type (spread, moneyline, total, prop)
+        period:
+          type: string
+          description: Game period (full_game, first_half, first_quarter)
+        oddId:
+          type: string
+          description: Unique odds identifier in OddID format
+        homeOdds:
+          type: number
+          format: float
+          description: Odds for home team or over in American format
+        awayOdds:
+          type: number
+          format: float
+          description: Odds for away team or under in American format
+        line:
+          type: number
+          format: float
+          description: Point spread or total line value
+        lastUpdated:
+          type: string
+          format: date-time
+    Market:
+      type: object
+      properties:
+        marketId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        betType:
+          type: string
+          enum: [moneyline, spread, total, prop]
+        sports:
+          type: array
+          items:
+            type: string
+    Stats:
+      type: object
+      properties:
+        eventId:
+          type: string
+        sport:
+          type: string
+        period:
+          type: string
+        homeScore:
+          type: integer
+        awayScore:
+          type: integer
+        homeStats:
+          type: object
+          additionalProperties: true
+        awayStats:
+          type: object
+          additionalProperties: true
+    UsageStats:
+      type: object
+      properties:
+        requestsToday:
+          type: integer
+        requestsMonth:
+          type: integer
+        dailyLimit:
+          type: integer
+        monthlyLimit:
+          type: integer
+        planName:
+          type: string
+paths:
+  /events/:
+    get:
+      operationId: listEvents
+      summary: List Events
+      description: Retrieve a list of sporting events with optional filters for sport, league, status, and date range.
+      tags:
+        - Events
+      parameters:
+        - name: sport
+          in: query
+          required: false
+          description: Filter by sport (e.g., football, basketball, baseball)
+          schema:
+            type: string
+        - name: league
+          in: query
+          required: false
+          description: Filter by league (e.g., NFL, NBA, EPL)
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          description: Filter by event status
+          schema:
+            type: string
+            enum: [scheduled, live, completed]
+        - name: dateFrom
+          in: query
+          required: false
+          description: Start date filter (ISO 8601 format)
+          schema:
+            type: string
+            format: date
+        - name: dateTo
+          in: query
+          required: false
+          description: End date filter (ISO 8601 format)
+          schema:
+            type: string
+            format: date
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of results to return
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+                  total:
+                    type: integer
+  /events/{eventId}:
+    get:
+      operationId: getEvent
+      summary: Get Event
+      description: Retrieve a specific sporting event by its ID including live odds and scores.
+      tags:
+        - Events
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          description: Unique event identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Event details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Event not found
+  /teams/:
+    get:
+      operationId: listTeams
+      summary: List Teams
+      description: Retrieve a list of teams with optional filters for sport and league.
+      tags:
+        - Teams
+      parameters:
+        - name: sport
+          in: query
+          required: false
+          description: Filter by sport
+          schema:
+            type: string
+        - name: league
+          in: query
+          required: false
+          description: Filter by league
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of teams
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+  /teams/{teamId}:
+    get:
+      operationId: getTeam
+      summary: Get Team
+      description: Retrieve a specific team by its ID.
+      tags:
+        - Teams
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          description: Unique team identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Team details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '404':
+          description: Team not found
+  /players/:
+    get:
+      operationId: listPlayers
+      summary: List Players
+      description: Retrieve a list of players with optional filters for team, sport, and league.
+      tags:
+        - Players
+      parameters:
+        - name: teamId
+          in: query
+          required: false
+          description: Filter by team ID
+          schema:
+            type: string
+        - name: sport
+          in: query
+          required: false
+          description: Filter by sport
+          schema:
+            type: string
+        - name: league
+          in: query
+          required: false
+          description: Filter by league
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of players
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Player'
+  /players/{playerId}:
+    get:
+      operationId: getPlayer
+      summary: Get Player
+      description: Retrieve a specific player by their ID including props odds and statistics.
+      tags:
+        - Players
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          description: Unique player identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Player details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '404':
+          description: Player not found
+  /sports/:
+    get:
+      operationId: listSports
+      summary: List Sports
+      description: Retrieve all supported sports with their available leagues.
+      tags:
+        - Sports
+      responses:
+        '200':
+          description: List of sports
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sport'
+  /leagues/:
+    get:
+      operationId: listLeagues
+      summary: List Leagues
+      description: Retrieve all supported leagues with optional sport filter.
+      tags:
+        - Leagues
+      parameters:
+        - name: sport
+          in: query
+          required: false
+          description: Filter by sport
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of leagues
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/League'
+  /stats/:
+    get:
+      operationId: listStats
+      summary: List Stats
+      description: Retrieve statistical data for events with optional filters.
+      tags:
+        - Stats
+      parameters:
+        - name: eventId
+          in: query
+          required: false
+          description: Filter by event ID
+          schema:
+            type: string
+        - name: sport
+          in: query
+          required: false
+          description: Filter by sport
+          schema:
+            type: string
+        - name: league
+          in: query
+          required: false
+          description: Filter by league
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Statistical data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stats'
+  /markets/:
+    get:
+      operationId: listMarkets
+      summary: List Markets
+      description: Retrieve all supported betting market types including moneylines, spreads, totals, and props.
+      tags:
+        - Markets
+      parameters:
+        - name: sport
+          in: query
+          required: false
+          description: Filter markets by sport
+          schema:
+            type: string
+        - name: betType
+          in: query
+          required: false
+          description: Filter by bet type
+          schema:
+            type: string
+            enum: [moneyline, spread, total, prop]
+      responses:
+        '200':
+          description: List of markets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Market'
+  /account/usage/:
+    get:
+      operationId: getAccountUsage
+      summary: Get Account Usage
+      description: Retrieve current API usage metrics including request counts and rate limit status.
+      tags:
+        - Account
+      responses:
+        '200':
+          description: API usage statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageStats'
+        '401':
+          description: Unauthorized - invalid API key

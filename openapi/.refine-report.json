@@ -1,0 +1,28 @@
+{
+  "provider": "sportsgameodds",
+  "sources": [
+    "sportsgameodds-account-api-openapi.yml",
+    "sportsgameodds-events-api-openapi.yml",
+    "sportsgameodds-leagues-api-openapi.yml",
+    "sportsgameodds-markets-api-openapi.yml",
+    "sportsgameodds-players-api-openapi.yml",
+    "sportsgameodds-sports-api-openapi.yml",
+    "sportsgameodds-stats-api-openapi.yml",
+    "sportsgameodds-teams-api-openapi.yml"
+  ],
+  "outputs": [
+    "sportsgameodds-account-api-openapi.yml",
+    "sportsgameodds-events-api-openapi.yml",
+    "sportsgameodds-leagues-api-openapi.yml",
+    "sportsgameodds-markets-api-openapi.yml",
+    "sportsgameodds-players-api-openapi.yml",
+    "sportsgameodds-sports-api-openapi.yml",
+    "sportsgameodds-stats-api-openapi.yml",
+    "sportsgameodds-teams-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
