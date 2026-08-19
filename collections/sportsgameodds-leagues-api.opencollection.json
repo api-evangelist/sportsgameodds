@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SportsGameOdds Account Leagues API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leagues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Leagues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/leagues/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport"
+              }
+            ]
+          },
+          "docs": "Retrieve all supported leagues with optional sport filter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

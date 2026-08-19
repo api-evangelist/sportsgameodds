@@ -1,0 +1,295 @@
+{
+  "item": [
+    {
+      "id": "6e35d903-121d-439a-9b0a-53f3fff78f3d",
+      "name": "Teams",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "853ef6dd-da65-492b-99bb-75974df8b637",
+          "name": "List Teams",
+          "request": {
+            "name": "List Teams",
+            "description": {
+              "content": "Retrieve a list of teams with optional filters for sport and league.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "Filter by sport"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "Filter by league"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6153dfe-c9e7-4259-9033-866af2e95253",
+              "name": "List of teams",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"teamId\": \"string\",\n      \"name\": \"string\",\n      \"abbreviation\": \"string\",\n      \"league\": \"string\"\n    },\n    {\n      \"teamId\": \"string\",\n      \"name\": \"string\",\n      \"abbreviation\": \"string\",\n      \"league\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "109d41d8-32a5-49a0-a9f2-d1b94856c3ad",
+          "name": "Get Team",
+          "request": {
+            "name": "Get Team",
+            "description": {
+              "content": "Retrieve a specific team by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamId",
+                  "description": "(Required) Unique team identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37340959-2f5f-4e9a-9d71-bd4c1a9c9dec",
+              "name": "Team details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamId",
+                      "description": "(Required) Unique team identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"teamId\": \"string\",\n  \"name\": \"string\",\n  \"abbreviation\": \"string\",\n  \"league\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e522b3f-936a-4913-ae96-8f641856fa36",
+              "name": "Team not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamId",
+                      "description": "(Required) Unique team identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sportsgameodds.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c4424279-c2fc-4565-8751-e217d993f60f",
+    "name": "SportsGameOdds Account Teams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.",
+      "type": "text/plain"
+    }
+  }
+}

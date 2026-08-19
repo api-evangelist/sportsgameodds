@@ -1,0 +1,161 @@
+{
+  "item": [
+    {
+      "id": "aa1e5a5f-7694-4cf9-98c5-4b009334acd6",
+      "name": "Stats",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1a0e156-c1a4-4bf2-b156-c81fd2699fe3",
+          "name": "List Stats",
+          "request": {
+            "name": "List Stats",
+            "description": {
+              "content": "Retrieve statistical data for events with optional filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "eventId",
+                  "value": "<string>",
+                  "description": "Filter by event ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "Filter by sport"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "Filter by league"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06ab5e0e-9219-47be-b4eb-085026c659f8",
+              "name": "Statistical data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"eventId\": \"string\",\n      \"sport\": \"string\",\n      \"period\": \"string\",\n      \"homeScore\": 2023,\n      \"awayScore\": 9531,\n      \"homeStats\": {\n        \"key_0\": \"string\",\n        \"key_1\": 317.86708809603215\n      },\n      \"awayStats\": {\n        \"key_0\": 5089.205716731676\n      }\n    },\n    {\n      \"eventId\": \"string\",\n      \"sport\": \"string\",\n      \"period\": \"string\",\n      \"homeScore\": 6621,\n      \"awayScore\": 2690,\n      \"homeStats\": {\n        \"key_0\": 6612,\n        \"key_1\": \"string\"\n      },\n      \"awayStats\": {\n        \"key_0\": 6801.81564214284,\n        \"key_1\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sportsgameodds.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7cb6d9b2-c652-43e3-a745-3e81c159ddac",
+    "name": "SportsGameOdds Account Stats API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.",
+      "type": "text/plain"
+    }
+  }
+}

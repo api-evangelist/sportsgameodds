@@ -1,0 +1,305 @@
+{
+  "item": [
+    {
+      "id": "1cbbc162-ffe0-41a8-9632-0d8ba88bdfb1",
+      "name": "Players",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be4ba23d-d767-41bc-84e2-904f61695089",
+          "name": "List Players",
+          "request": {
+            "name": "List Players",
+            "description": {
+              "content": "Retrieve a list of players with optional filters for team, sport, and league.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "players",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "teamId",
+                  "value": "<string>",
+                  "description": "Filter by team ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "Filter by sport"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "Filter by league"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da3a1de1-141a-408e-b932-2ce8f525805c",
+              "name": "List of players",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "players",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"playerId\": \"string\",\n      \"name\": \"string\",\n      \"team\": \"string\",\n      \"position\": \"string\",\n      \"league\": \"string\"\n    },\n    {\n      \"playerId\": \"string\",\n      \"name\": \"string\",\n      \"team\": \"string\",\n      \"position\": \"string\",\n      \"league\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "febe2705-5b63-4231-ae3d-9193102bb3d8",
+          "name": "Get Player",
+          "request": {
+            "name": "Get Player",
+            "description": {
+              "content": "Retrieve a specific player by their ID including props odds and statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "players",
+                ":playerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playerId",
+                  "description": "(Required) Unique player identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f0f9d76-0e47-4112-b014-bf11e09c6da5",
+              "name": "Player details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "players",
+                    ":playerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) Unique player identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"playerId\": \"string\",\n  \"name\": \"string\",\n  \"team\": \"string\",\n  \"position\": \"string\",\n  \"league\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c28e517-d20c-4f9f-83bb-75ec3bde5c60",
+              "name": "Player not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "players",
+                    ":playerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playerId",
+                      "description": "(Required) Unique player identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sportsgameodds.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3d5da5d3-dc75-40cc-995a-0658d49550d8",
+    "name": "SportsGameOdds Account Players API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.",
+      "type": "text/plain"
+    }
+  }
+}

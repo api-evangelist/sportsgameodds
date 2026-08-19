@@ -1,0 +1,335 @@
+{
+  "item": [
+    {
+      "id": "6a29c680-87ba-459e-af19-c8b73213cdb7",
+      "name": "Events",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "456bcef5-2a9c-4d6c-b125-25faa28c0936",
+          "name": "List Events",
+          "request": {
+            "name": "List Events",
+            "description": {
+              "content": "Retrieve a list of sporting events with optional filters for sport, league, status, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "Filter by sport (e.g., football, basketball, baseball)"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "Filter by league (e.g., NFL, NBA, EPL)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by event status"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "<date>",
+                  "description": "Start date filter (ISO 8601 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "<date>",
+                  "description": "End date filter (ISO 8601 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of results to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fdf1a0e3-b650-4ed8-8b7d-9a81da1688be",
+              "name": "List of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"eventId\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"startTime\": \"2022-02-03T04:53:40.954Z\",\n      \"status\": \"completed\",\n      \"homeTeam\": {\n        \"teamId\": \"string\",\n        \"name\": \"string\",\n        \"abbreviation\": \"string\",\n        \"league\": \"string\"\n      },\n      \"awayTeam\": {\n        \"teamId\": \"string\",\n        \"name\": \"string\",\n        \"abbreviation\": \"string\",\n        \"league\": \"string\"\n      },\n      \"odds\": [\n        {\n          \"bookmaker\": \"string\",\n          \"market\": \"string\",\n          \"period\": \"string\",\n          \"oddId\": \"string\",\n          \"homeOdds\": 622.3837524686493,\n          \"awayOdds\": 3218.2913936359637,\n          \"line\": 6459.043135953711,\n          \"lastUpdated\": \"2024-09-12T21:42:37.456Z\"\n        },\n        {\n          \"bookmaker\": \"string\",\n          \"market\": \"string\",\n          \"period\": \"string\",\n          \"oddId\": \"string\",\n          \"homeOdds\": 4537.859214418685,\n          \"awayOdds\": 124.63030493979454,\n          \"line\": 2278.4814190273228,\n          \"lastUpdated\": \"1969-04-30T20:50:46.943Z\"\n        }\n      ]\n    },\n    {\n      \"eventId\": \"string\",\n      \"sport\": \"string\",\n      \"league\": \"string\",\n      \"startTime\": \"2009-06-26T01:11:41.697Z\",\n      \"status\": \"cancelled\",\n      \"homeTeam\": {\n        \"teamId\": \"string\",\n        \"name\": \"string\",\n        \"abbreviation\": \"string\",\n        \"league\": \"string\"\n      },\n      \"awayTeam\": {\n        \"teamId\": \"string\",\n        \"name\": \"string\",\n        \"abbreviation\": \"string\",\n        \"league\": \"string\"\n      },\n      \"odds\": [\n        {\n          \"bookmaker\": \"string\",\n          \"market\": \"string\",\n          \"period\": \"string\",\n          \"oddId\": \"string\",\n          \"homeOdds\": 3237.7956839437993,\n          \"awayOdds\": 9687.392612530206,\n          \"line\": 5655.235408842024,\n          \"lastUpdated\": \"2008-12-20T16:24:09.953Z\"\n        },\n        {\n          \"bookmaker\": \"string\",\n          \"market\": \"string\",\n          \"period\": \"string\",\n          \"oddId\": \"string\",\n          \"homeOdds\": 5184.609849232068,\n          \"awayOdds\": 8937.877679046785,\n          \"line\": 2383.7421784014123,\n          \"lastUpdated\": \"1991-01-31T05:31:46.758Z\"\n        }\n      ]\n    }\n  ],\n  \"total\": 4819\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72a1b28f-403d-4c3d-8c3d-14dba271cdab",
+          "name": "Get Event",
+          "request": {
+            "name": "Get Event",
+            "description": {
+              "content": "Retrieve a specific sporting event by its ID including live odds and scores.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventId",
+                  "description": "(Required) Unique event identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4c7d473-fb33-47a6-b290-0b7fa5197643",
+              "name": "Event details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Unique event identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"eventId\": \"string\",\n  \"sport\": \"string\",\n  \"league\": \"string\",\n  \"startTime\": \"1959-01-25T13:47:04.563Z\",\n  \"status\": \"completed\",\n  \"homeTeam\": {\n    \"teamId\": \"string\",\n    \"name\": \"string\",\n    \"abbreviation\": \"string\",\n    \"league\": \"string\"\n  },\n  \"awayTeam\": {\n    \"teamId\": \"string\",\n    \"name\": \"string\",\n    \"abbreviation\": \"string\",\n    \"league\": \"string\"\n  },\n  \"odds\": [\n    {\n      \"bookmaker\": \"string\",\n      \"market\": \"string\",\n      \"period\": \"string\",\n      \"oddId\": \"string\",\n      \"homeOdds\": 66.92400706486912,\n      \"awayOdds\": 5852.971279439284,\n      \"line\": 4385.21083883996,\n      \"lastUpdated\": \"1974-06-07T22:23:03.180Z\"\n    },\n    {\n      \"bookmaker\": \"string\",\n      \"market\": \"string\",\n      \"period\": \"string\",\n      \"oddId\": \"string\",\n      \"homeOdds\": 8287.134397656444,\n      \"awayOdds\": 1773.322670172277,\n      \"line\": 7527.424315707334,\n      \"lastUpdated\": \"2020-08-27T17:47:02.198Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9529a118-c48b-4d00-9a2e-63d691a54325",
+              "name": "Event not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Unique event identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sportsgameodds.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6275af57-5b4f-4404-badb-c06f88a6db97",
+    "name": "SportsGameOdds Account Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.",
+      "type": "text/plain"
+    }
+  }
+}

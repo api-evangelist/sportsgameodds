@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SportsGameOdds Account Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/events/",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport (e.g., football, basketball, baseball)"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "Filter by league (e.g., NFL, NBA, EPL)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event status"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Start date filter (ISO 8601 format)"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "End date filter (ISO 8601 format)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of sporting events with optional filters for sport, league, status, and date range."
+        },
+        {
+          "info": {
+            "name": "Get Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsgameodds.com/v1/events/:eventId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "Unique event identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific sporting event by its ID including live odds and scores."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
