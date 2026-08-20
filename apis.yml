@@ -58,6 +58,8 @@ apis:
   humanURL: https://sportsgameodds.com/
   baseURL: https://api.sportsgameodds.com/v1
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -166,6 +168,8 @@ apis:
   humanURL: https://sportsgameodds.com/
   baseURL: https://api.sportsgameodds.com/v1
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
