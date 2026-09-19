@@ -91,6 +91,8 @@ apis:
   humanURL: https://sportsgameodds.com/
   baseURL: https://api.sportsgameodds.com/v1
   tags:
+  - League
+  tags_raw:
   - Leagues
   properties:
   - type: OpenAPI
@@ -127,6 +129,8 @@ apis:
   humanURL: https://sportsgameodds.com/
   baseURL: https://api.sportsgameodds.com/v1
   tags:
+  - Player
+  tags_raw:
   - Players
   properties:
   - type: OpenAPI
