@@ -1,14 +1,7 @@
 {
   "provider": "sportsgameodds",
   "sources": [
-    "sportsgameodds-account-api-openapi.yml",
-    "sportsgameodds-events-api-openapi.yml",
-    "sportsgameodds-leagues-api-openapi.yml",
-    "sportsgameodds-markets-api-openapi.yml",
-    "sportsgameodds-players-api-openapi.yml",
-    "sportsgameodds-sports-api-openapi.yml",
-    "sportsgameodds-stats-api-openapi.yml",
-    "sportsgameodds-teams-api-openapi.yml"
+    "_original/sportsgameodds-openapi.yml"
   ],
   "outputs": [
     "sportsgameodds-account-api-openapi.yml",
@@ -23,6 +16,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sportsgameodds-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sportsgameodds-openapi.yml: declared missing tag: Account",
+    "sportsgameodds-openapi.yml: declared missing tag: Events",
+    "sportsgameodds-openapi.yml: declared missing tag: Leagues",
+    "sportsgameodds-openapi.yml: declared missing tag: Markets",
+    "sportsgameodds-openapi.yml: declared missing tag: Players",
+    "sportsgameodds-openapi.yml: declared missing tag: Sports",
+    "sportsgameodds-openapi.yml: declared missing tag: Stats",
+    "sportsgameodds-openapi.yml: declared missing tag: Teams",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "sportsgameodds-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sportsgameodds-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sportsgameodds-leagues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sportsgameodds-markets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sportsgameodds-players-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sportsgameodds-sports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sportsgameodds-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sportsgameodds-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: SportsGameOdds Account Teams API
+  title: SportsGameOdds Teams API
   description: SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.
   version: '1.0'
   contact:
