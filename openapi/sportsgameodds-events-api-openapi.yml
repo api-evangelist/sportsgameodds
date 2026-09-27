@@ -105,6 +105,36 @@ paths:
           description: Event not found
 components:
   schemas:
+    OddsLine:
+      type: object
+      properties:
+        bookmaker:
+          type: string
+          description: Sportsbook name
+        market:
+          type: string
+          description: Betting market type (spread, moneyline, total, prop)
+        period:
+          type: string
+          description: Game period (full_game, first_half, first_quarter)
+        oddId:
+          type: string
+          description: Unique odds identifier in OddID format
+        homeOdds:
+          type: number
+          format: float
+          description: Odds for home team or over in American format
+        awayOdds:
+          type: number
+          format: float
+          description: Odds for away team or under in American format
+        line:
+          type: number
+          format: float
+          description: Point spread or total line value
+        lastUpdated:
+          type: string
+          format: date-time
     Event:
       type: object
       properties:
@@ -148,36 +178,6 @@ components:
           type: string
         league:
           type: string
-    OddsLine:
-      type: object
-      properties:
-        bookmaker:
-          type: string
-          description: Sportsbook name
-        market:
-          type: string
-          description: Betting market type (spread, moneyline, total, prop)
-        period:
-          type: string
-          description: Game period (full_game, first_half, first_quarter)
-        oddId:
-          type: string
-          description: Unique odds identifier in OddID format
-        homeOdds:
-          type: number
-          format: float
-          description: Odds for home team or over in American format
-        awayOdds:
-          type: number
-          format: float
-          description: Odds for away team or under in American format
-        line:
-          type: number
-          format: float
-          description: Point spread or total line value
-        lastUpdated:
-          type: string
-          format: date-time
   securitySchemes:
     apiKeyHeader:
       type: apiKey
