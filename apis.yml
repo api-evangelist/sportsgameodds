@@ -200,6 +200,12 @@ apis:
   - type: Explorer
     url: https://sportsgameodds.com/docs/explorer
 common:
+  - type: Plans
+    url: plans/sportsgameodds-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/sportsgameodds-rate-limits.yml
+  - type: FinOps
+    url: finops/sportsgameodds-finops.yml
   - type: AgenticAccess
     url: agentic-access/sportsgameodds-agentic-access.yml
   - type: DomainSecurity
