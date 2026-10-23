@@ -200,6 +200,8 @@ apis:
   - type: Explorer
     url: https://sportsgameodds.com/docs/explorer
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/sportsgameodds/overview
   - type: Plans
     url: plans/sportsgameodds-plans-pricing.yml
   - type: RateLimits
