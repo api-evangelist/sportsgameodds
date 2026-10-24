@@ -1,125 +1,122 @@
 {
+  "info": {
+    "_postman_id": "042539da-b924-4ad4-bc77-12c4a4f8151e",
+    "name": "SportsGameOdds Markets API",
+    "description": "SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:38:17.000Z",
+    "updatedAt": "2026-10-21T20:38:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-042539da-b924-4ad4-bc77-12c4a4f8151e"
+  },
   "item": [
     {
-      "id": "5f69f75a-00d8-4c36-af9d-11a6b6107ba9",
-      "name": "Markets",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "markets",
       "item": [
         {
-          "id": "a43281a4-6fcd-43e9-9ac5-a848122d2832",
           "name": "List Markets",
+          "id": "48d8ebcf-a92a-47d7-a878-b976d7e056a6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List Markets",
-            "description": {
-              "content": "Retrieve all supported betting market types including moneylines, spreads, totals, and props.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "markets",
-                ""
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "sport",
-                  "value": "<string>",
-                  "description": "Filter markets by sport"
-                },
-                {
-                  "disabled": false,
-                  "key": "betType",
-                  "value": "<string>",
-                  "description": "Filter by bet type"
-                }
-              ],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/markets/?sport=<string>&betType=spread",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "markets",
+                ""
+              ],
+              "query": [
+                {
+                  "description": "Filter markets by sport",
+                  "key": "sport",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by bet type",
+                  "key": "betType",
+                  "value": "spread"
+                }
+              ]
+            },
+            "description": "Retrieve all supported betting market types including moneylines, spreads, totals, and props."
           },
           "response": [
             {
-              "id": "d2d2d366-235c-4964-b276-2e388fb4e2d7",
+              "id": "1fc1392a-5e6d-4429-b7ab-87d3ae13b179",
               "name": "List of markets",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/markets/?sport=<string>&betType=spread",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "markets",
                     ""
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Filter markets by sport",
                       "key": "sport",
                       "value": "<string>"
                     },
                     {
+                      "description": "Filter by bet type",
                       "key": "betType",
-                      "value": "<string>"
+                      "value": "spread"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"marketId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"betType\": \"moneyline\",\n      \"sports\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"marketId\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"betType\": \"prop\",\n      \"sports\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"marketId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"betType\": \"moneyline\",\n      \"sports\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"marketId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"betType\": \"prop\",\n      \"sports\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T20:38:18.000Z",
+              "updatedAt": "2026-10-21T20:38:18.000Z",
+              "uid": "35240-1fc1392a-5e6d-4429-b7ab-87d3ae13b179"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:38:17.000Z",
+          "updatedAt": "2026-10-21T20:38:17.000Z",
+          "uid": "35240-48d8ebcf-a92a-47d7-a878-b976d7e056a6"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.sportsgameodds.com/v1",
-      "key": "baseUrl"
+      "id": "7042b896-048a-4a77-b732-fbf49c31ada1",
+      "createdAt": "2026-10-21T20:38:17.000Z",
+      "updatedAt": "2026-10-21T20:38:17.000Z",
+      "uid": "35240-7042b896-048a-4a77-b732-fbf49c31ada1"
     }
   ],
   "auth": {
@@ -127,25 +124,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-API-Key"
+        "value": "X-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8a3946e4-b7ff-4d69-8de7-d60216d376db",
-    "name": "SportsGameOdds Account Markets API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sportsgameodds.com/v1"
     }
-  }
+  ]
 }

@@ -1,146 +1,144 @@
 {
+  "info": {
+    "_postman_id": "6a55d5f5-51d4-4416-a268-29e93bd5ebf5",
+    "name": "SportsGameOdds Account API",
+    "description": "SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:37:46.000Z",
+    "updatedAt": "2026-10-21T20:37:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6a55d5f5-51d4-4416-a268-29e93bd5ebf5"
+  },
   "item": [
     {
-      "id": "4225465b-7529-41f5-9b6f-b8f614c06d41",
-      "name": "Account",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "account",
       "item": [
         {
-          "id": "68786307-670f-44e5-a591-fc920ed41224",
-          "name": "Get Account Usage",
-          "request": {
-            "name": "Get Account Usage",
-            "description": {
-              "content": "Retrieve current API usage metrics including request counts and rate limit status.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "account",
-                "usage",
-                ""
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "usage",
+          "item": [
             {
-              "id": "e2b2c1a3-a090-4f0b-9f35-25c9f0027364",
-              "name": "API usage statistics",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "account",
-                    "usage",
-                    ""
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Get Account Usage",
+              "id": "d598ddfb-e16a-48d9-8bb4-97099c8df60d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"requestsToday\": 3352,\n  \"requestsMonth\": 2088,\n  \"dailyLimit\": 5056,\n  \"monthlyLimit\": 2593,\n  \"planName\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dbddfba7-d3e2-4c1f-96bb-0af3d566e1c4",
-              "name": "Unauthorized - invalid API key",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/account/usage/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "account",
                     "usage",
                     ""
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Retrieve current API usage metrics including request counts and rate limit status."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "e9c4c06d-e7e5-4bd7-9f89-e08d8eee7708",
+                  "name": "API usage statistics",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/usage/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "usage",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestsToday\": \"<integer>\",\n  \"requestsMonth\": \"<integer>\",\n  \"dailyLimit\": \"<integer>\",\n  \"monthlyLimit\": \"<integer>\",\n  \"planName\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:37:47.000Z",
+                  "updatedAt": "2026-10-21T20:37:47.000Z",
+                  "uid": "35240-e9c4c06d-e7e5-4bd7-9f89-e08d8eee7708"
+                },
+                {
+                  "id": "a1d5b025-5704-48eb-8fa7-cf2a3e0e3d56",
+                  "name": "Unauthorized - invalid API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/usage/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        "usage",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:37:47.000Z",
+                  "updatedAt": "2026-10-21T20:37:47.000Z",
+                  "uid": "35240-a1d5b025-5704-48eb-8fa7-cf2a3e0e3d56"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-21T20:37:47.000Z",
+              "updatedAt": "2026-10-21T20:37:47.000Z",
+              "uid": "35240-d598ddfb-e16a-48d9-8bb4-97099c8df60d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8a4feb6e-0844-4b6d-ad1b-513ef626956f",
+          "createdAt": "2026-10-21T20:37:47.000Z",
+          "updatedAt": "2026-10-21T20:37:47.000Z",
+          "uid": "35240-8a4feb6e-0844-4b6d-ad1b-513ef626956f"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.sportsgameodds.com/v1",
-      "key": "baseUrl"
+      "id": "528e473b-f495-45cc-969b-68c9f95d26be",
+      "createdAt": "2026-10-21T20:37:47.000Z",
+      "updatedAt": "2026-10-21T20:37:47.000Z",
+      "uid": "35240-528e473b-f495-45cc-969b-68c9f95d26be"
     }
   ],
   "auth": {
@@ -148,25 +146,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-API-Key"
+        "value": "X-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "166241bd-fe21-4cb4-bf4a-3ad1922adaf2",
-    "name": "SportsGameOdds Account API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props, with official SDKs for JavaScript/TypeScript and Python.",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sportsgameodds.com/v1"
     }
-  }
+  ]
 }
