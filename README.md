@@ -1,4 +1,4 @@
-# SportsGameOdds (sportsgameodds)
+# SportsGameOdds
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,74 +66,171 @@
 
 SportsGameOdds API provides real-time sports betting odds data from 80+ sportsbooks across 50+ leagues. The API delivers live and pre-match odds across 3,000+ markets including moneylines, spreads, over/unders, team props, and player props for NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, ATP and more. Features include consensus odds calculations, streaming for live data, an interactive data explorer, and official SDKs for JavaScript/TypeScript and Python.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/sportsgameodds/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/sportsgameodds/refs/heads/main/apis.yml)
+**Areas:** Sports Betting · Odds · Sports Data · Fantasy Sports · Gambling
 
-## Scope
+## SportsGameOdds on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for SportsGameOdds is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/sportsgameodds/](https://apis.io/providers/sportsgameodds/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Sports Betting
-- Odds
-- Sports Data
-- Fantasy Sports
-- Gambling
+- [SportsGameOdds Account API](https://apis.io/apis/sportsgameodds/sportsgameodds-account-api/) — The Account API from SportsGameOdds — 1 operation(s) for account.
+- [SportsGameOdds Events API](https://apis.io/apis/sportsgameodds/sportsgameodds-events-api/) — The Events API from SportsGameOdds — 2 operation(s) for events.
+- [SportsGameOdds Leagues API](https://apis.io/apis/sportsgameodds/sportsgameodds-leagues-api/) — The Leagues API from SportsGameOdds — 1 operation(s) for leagues.
+- [SportsGameOdds Markets API](https://apis.io/apis/sportsgameodds/sportsgameodds-markets-api/) — The Markets API from SportsGameOdds — 1 operation(s) for markets.
+- [SportsGameOdds Players API](https://apis.io/apis/sportsgameodds/sportsgameodds-players-api/) — The Players API from SportsGameOdds — 2 operation(s) for players.
+- [SportsGameOdds Sports API](https://apis.io/apis/sportsgameodds/sportsgameodds-sports-api/) — The Sports API from SportsGameOdds — 1 operation(s) for sports.
+- [SportsGameOdds Stats API](https://apis.io/apis/sportsgameodds/sportsgameodds-stats-api/) — The Stats API from SportsGameOdds — 1 operation(s) for stats.
+- [SportsGameOdds Teams API](https://apis.io/apis/sportsgameodds/sportsgameodds-teams-api/) — The Teams API from SportsGameOdds — 2 operation(s) for teams.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### SportsGameOdds API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Real-time sports betting odds API aggregating data from 80+ sportsbooks with 50+ leagues including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, and ATP. Covers 3,000+ betting markets with moneylines, spreads, totals, team props, and player props. Includes consensus odds, live streaming data, and an interactive data explorer. Official SDKs available for JavaScript, TypeScript, Python, Java, Go, and Ruby.
+- [Sportsgameodds Agentic Access](https://apis.io/agentic-access/sportsgameodds/sportsgameodds-agentic-access/)
 
-- **Human URL:** [https://sportsgameodds.com/](https://sportsgameodds.com/)
-- **Base URL:** `https://api.sportsgameodds.com/v1`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Sports Betting
-- Odds
-- NFL
-- NBA
-- MLB
-- NHL
-- Soccer
-- UFC
-- Player Props
-- Live Scores
+- [SportsGameOdds Event](https://apis.io/schemas/sportsgameodds/sportsgameodds-event/)
+- [SportsGameOdds Market](https://apis.io/schemas/sportsgameodds/sportsgameodds-market/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://sportsgameodds.com/docs/)
-- [Reference](https://sportsgameodds.com/docs/reference)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/sportsgameodds/refs/heads/main/openapi/sportsgameodds-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Getting Started](https://sportsgameodds.com/docs/v1/setup/getting-started)
-- [Explorer](https://sportsgameodds.com/docs/explorer)
-- [Postman Collection](collections/sportsgameodds.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sportsgameodds.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Sportsgameodds Event Structure](https://apis.io/json-structure/sportsgameodds/sportsgameodds-event-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Sportsgameodds Context](https://apis.io/jsonld/sportsgameodds/sportsgameodds-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [SportsGameOdds Vocabulary](https://apis.io/vocabularies/sportsgameodds/sportsgameodds-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Sportsgameodds List Events Example](https://apis.io/examples/sportsgameodds/sportsgameodds-list-events-example/)
+- [Sportsgameodds List Markets Example](https://apis.io/examples/sportsgameodds/sportsgameodds-list-markets-example/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [SportsGameOdds API](https://apis.io/collections/sportsgameodds/open-sportsgameodds/)
+- [SportsGameOdds Account API](https://apis.io/collections/sportsgameodds/open-sportsgameodds-account-api/)
+- [SportsGameOdds Account Events API](https://apis.io/collections/sportsgameodds/open-sportsgameodds-events-api/)
+- [SportsGameOdds Account Leagues API](https://apis.io/collections/sportsgameodds/open-sportsgameodds-leagues-api/)
+- [SportsGameOdds Account Markets API](https://apis.io/collections/sportsgameodds/open-sportsgameodds-markets-api/)
+- [SportsGameOdds Account Players API](https://apis.io/collections/sportsgameodds/open-sportsgameodds-players-api/)
+- [SportsGameOdds Account Sports API](https://apis.io/collections/sportsgameodds/open-sportsgameodds-sports-api/)
+- [SportsGameOdds Account Stats API](https://apis.io/collections/sportsgameodds/open-sportsgameodds-stats-api/)
+- [SportsGameOdds Account Teams API](https://apis.io/collections/sportsgameodds/open-sportsgameodds-teams-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [SportsGameOdds — jsonschema rules](https://apis.io/rules/sportsgameodds/sportsgameodds-jsonschema-spectral-rules/)
+- [SportsGameOdds API Rules](https://apis.io/rules/sportsgameodds/sportsgameodds-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Sportsgameodds Authentication](https://apis.io/security/sportsgameodds/sportsgameodds-authentication/)
+- [Sportsgameodds Domain Security](https://apis.io/security/sportsgameodds/sportsgameodds-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Sportsgameodds Plans Pricing](https://apis.io/plans/sportsgameodds/sportsgameodds-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Sportsgameodds Rate Limits](https://apis.io/rate-limits/sportsgameodds/sportsgameodds-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Sportsgameodds Finops](https://apis.io/finops/sportsgameodds/sportsgameodds-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://sportsgameodds.com/)
-- [Portal](https://sportsgameodds.com/docs/)
 - [Documentation](https://sportsgameodds.com/docs/reference)
 - [Pricing](https://sportsgameodds.com/pricing)
-- [Git Hub](https://github.com/SportsGameOdds)
-- [SDK](https://github.com/SportsGameOdds/sports-odds-api-python)
-- [SDK](https://github.com/SportsGameOdds/sports-odds-api-typescript)
-- [SDK](https://github.com/SportsGameOdds/sports-odds-api-java)
-- [SDK](https://github.com/SportsGameOdds/sports-odds-api-go)
-- [SDK](https://github.com/SportsGameOdds/sports-odds-api-ruby)
-- [L L Ms Txt](https://sportsgameodds.com/llms.txt)
+- [Blog](https://sportsgameodds.com/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 42.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 55.6 |
+| Contract governance | 13.6 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 70.2 |
+| Access clarity | 18.4 |
+
+**Agent readiness 21.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/sportsgameodds/](https://apis.io/providers/sportsgameodds/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SportsGameOdds: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/sportsgameodds/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
